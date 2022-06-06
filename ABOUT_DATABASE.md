@@ -1,5 +1,24 @@
 This video talks about...
 
+202006061830
+* ************ Note Model Class *********************************************
+*   // 완전 코틀린.. (late 쓴거나 String? 쓴거나 Kotlin 과 완전 똑같네
+    late final String? _description;
+    model class 를 만들었다. 여기내용을 잘 보면 많은게 보인다.
+
+202006061810
+* ************ SQFLite Plugin deals with MAP Object *************************
+* Map Object 만 취급
+* 따라서 1. Dependencies in pubspec.yaml (sqfLite : any, path_provider: any, intl: ^0.15.7)
+*          path_provider 는 Finds commonly used locations on the file system
+*          intl 은 Internationalization package, data/number formatting and parsing
+*       2. Model Class (to represent Note object)
+*       3. Database Helper Class (to perform CRUD operation)
+*       4. Connect Database to UI
+***************************************************************************** 
+
+
+
 202206061715
 * ************ Asynchronous Tutorial using Future API with then *************
   import 'dart:async';
@@ -36,7 +55,7 @@ This video talks about...
     https://stackoverflow.com/questions/50287995/passing-data-to-statefulwidget-and-accessing-it-in-its-state-in-flutter
   * push & pop manually (내가 정하고 싶을 때)
     appBar 에 leading 아이템을 넣으면 된다. 
-  * 안드로이드 Back Button을 구현하고 싶으면 WillPopScope widget 사용
+  * 안드로이드 Back Button 을 구현하고 싶으면 WillPopScope widget 사용
   * ************ Asynchronous Tutorial using Future API with async, await *************
     import 'dart:async';
     main() {
@@ -47,7 +66,7 @@ This video talks about...
     }
     //2. Thread 함수를 실행할 함수에다가 async 와 await 를 넣어준다.
     printFileContent() async {
-        //await 가 없으면 downloadAFile은 Future<String>을 리턴한다.
+        //await 가 없으면 downloadAFile 은 Future<String>을 리턴한다.
         String fileContent= await downloadAFile();
         print('The content of the file is -> $fileContent');
     }
