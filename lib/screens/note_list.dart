@@ -1,3 +1,4 @@
+import 'package:database_example/screens/note_detail.dart';
 import 'package:flutter/material.dart';
 
 // create StatefulWidget. check how to create StatefulWidget with two classes.
@@ -20,13 +21,15 @@ class _NoteListState extends State<NoteList> {
     return Scaffold(
       // Scaffold has appBar
       appBar: AppBar(
-        title: const Text('Note'),
+        title: const Text('Note List'),
       ),
       body: getNoteListView(),
-      // Scaffold has floatingActionButton
+      // Scaffold has floatingActionButton, FAB
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           debugPrint('Floating Action Button Clicked');
+          //화면이동, navigate screen
+          navigateToNoteDetail('New Note');
         },
         tooltip: 'Add Note',
         child: const Icon(Icons.add),
@@ -59,10 +62,18 @@ class _NoteListState extends State<NoteList> {
             trailing: const Icon(Icons.delete, color: Colors.grey,),
             onTap: () {
               debugPrint('List Item clicked.');
+              navigateToNoteDetail('Edit Note');
             },
           ),
         );
       },
     );
+  }
+
+  void navigateToNoteDetail(String title) {
+    Navigator.push(context, MaterialPageRoute(builder: (context) {
+      return NoteDetail(title);
+    },));
+
   }
 }

@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
 
 class NoteDetail extends StatefulWidget {
-  const NoteDetail({Key? key}) : super(key: key);
+  // 데이터 넘겨받을때 그냥 바로 widget.appBarTitle 을 NoteDetailState 에서 사용하면 된다
+  // Don't use parameter for Constructor in StatefulWidget.
+  final String appBarTitle;
+  const NoteDetail(this.appBarTitle, {Key? key}) : super(key: key);
 
   @override
   State createState() {
-    return _NoteDetailState();
+    return NoteDetailState();
   }
 }
+// [error] 생성자 함수 만드는데 class NoteDetailState() 이렇게 또 해놓으면 어떻하니?
+class NoteDetailState extends State<NoteDetail> {
 
-class _NoteDetailState extends State<NoteDetail> {
   // for DropdownButton
   static final _priorities = ['High', 'Low'];
   // for TextFormField or TextField input handling
@@ -18,11 +22,25 @@ class _NoteDetailState extends State<NoteDetail> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return WillPopScope(
+      // 뒤로가기 버턴
+      // Write some code to control things, when user press back navigation button in device
+      onWillPop: () async {
+        bool? result= await moveToLastScreen();
+        result ??= false;
+        return result;
+
+      },
+      child : Scaffold(
       appBar: AppBar(
-        title: const Text('Edit Note'),
+        title: Text(widget.appBarTitle),
+        leading: IconButton(icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            moveToLastScreen();
+          },),
       ),
       body: getNoteDetailListView(),
+    )
     );
   }
 
@@ -126,5 +144,10 @@ class _NoteDetailState extends State<NoteDetail> {
         ],
       ),
     );
+  }
+
+  moveToLastScreen() {
+    Navigator.pop(context);
+
   }
 }

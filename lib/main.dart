@@ -1,4 +1,4 @@
-import 'package:database_example/screens/note_detail.dart';
+import 'package:database_example/screens/note_list.dart';
 import 'package:flutter/material.dart';
 
 // check with ABOUT_DATABASE.MD file first
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       title: 'NoteKeeper',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.deepPurple),
-      home: const NoteDetail(),
+      home: const NoteList(),
     );
   }
 }
