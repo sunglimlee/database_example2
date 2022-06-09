@@ -1,5 +1,45 @@
 This video talks about...
 
+202206091543
+* ********* database location ***************************************************
+* I find for my own Flutter apps that the relevant path is /data/usr/0/…/app_flutter for the example you gave, this would be /data/usr/0/com.example.localsStorageExample/app_flutter
+* View/Tool Windows/App Inspection/Database 에서 데이터베이스를 다룰 수 있고 export 도 할 수 있다.
+* https://developer.android.com/studio/inspect/database //데이터베이스에 관련된 링크 참조.
+* ************************************************************************
+
+202206061919
+* **************** Error Handling *******************************************
+* 
+* ***************************************************************************
+* **************** Database Helper Class ************************************
+* database_helper.dart
+* Database Helper Class (import 여러가지 파일들)
+* Create Singletons
+* // named constructor - 다른것보다 훨씬 더 실용적이네..
+    // 말그대로 constructor 이나깐 오브젝트를 만들어 내는구나. 그래서 DatabaseHelper() 오브젝트를 만드는구나.
+    //https://medium.com/nerd-for-tech/named-constructor-vs-factory-constructor-in-dart-ba28250b2747
+    DatabaseHelper._createInstance();
+* // factory constructor is STATIC
+* // factory constructor should use RETURN statement
+* Event Handler 가 필요할 땐 GestureDetector() 를 사용
+* Write code for (insert, fetch, update, delete)
+* ***************************************************************************
+* swipe to delete : https://www.technicalfeeder.com/2021/12/flutter-swipe-list-item-to-delete/
+* **************** List 객체 생성하는 방법 잘 봐라.. ****************************
+* Future<List<Note>> getNoteList() async {
+    var noteMapList = await getNoteMapList();
+    int count = noteMapList.length;
+    List<Note> noteList = [];
+    for (int i = 0; i < count; i++) {
+    noteList.add(Note.fromMapObject(noteMapList[i]));
+    }
+    return noteList;
+    }
+* ****************************************************************************
+
+
+
+
 202006061830
 * ************ Note Model Class *********************************************
 *   // 완전 코틀린.. (late 쓴거나 String? 쓴거나 Kotlin 과 완전 똑같네
@@ -76,6 +116,13 @@ This video talks about...
         Future<String> result = Future.delayed(Duration(second: 6), () {
             return 'My secret file content';
     }
-  * ********************************************************************
-
- 
+  * ****************** 데이터베이스 전반적인 구조 ***************************
+* 0. Building App UI
+* 1. Navigating between screens in Flutter
+* 2. Asynchronous Programming (Future, Async, Await, Then)
+* 3. Creating Database Model Class
+* 4. Singletons, Creating Database Helper Class
+* 5. Plugins (SQFLite, Path_Provider, Intl)
+* 6. Performing CRUD Operation
+* 7. Conclusion
+************************************************************************** 

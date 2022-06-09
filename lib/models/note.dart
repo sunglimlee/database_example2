@@ -1,18 +1,21 @@
 class Note {
   // 완전 코틀린.. (late 쓴거나 String? 쓴거나 Kotlin 과 완전 똑같네
-  late final int? _id;
-  late final String _title;
-  late final String _description;
-  late final String date;
-  late final int _property;
+  //[error] [ERROR:flutter/runtime/dart_vm_initializer.cc(39)] Unhandled Exception: LateInitializationError: Field '_id@28339384' has not been initialized.
+  // 이부분을 처음에는 late int _id 로 했는데 그렇게 하면 null 이 되면 안된다는 뜻이잖아.. 왜냐하면 null 도 값이거든.
+  // 그래서 초기화 자체가 안되어 있는데 null 인지 비교하는 것 자체가 안되는 거지.. 잘했어..
+  int? _id; // 기억하자 null 도 값이다. remember null is also value in Dart.
+  late String _title;
+  late String _description;
+  late String date;
+  late int _priority;
 
   // Constructors (Named Constructor too)
-  Note(this._title, this.date, this._property, this._description);
+  Note(this._title, this.date, this._priority, this._description);
 
   Note.withId(
-      this._id, this._title, this._description, this.date, this._property);
+      this._id, this._title, this._description, this.date, this._priority);
 
-  int get property => _property;
+  int get priority => _priority;
 
   int? get id => _id;
 
@@ -21,16 +24,16 @@ class Note {
   String get title => _title;
 
   // switch case statement 문장 사용
-  set property(int value) {
+  set priority(int value) {
     switch (value) {
       case 1:
         {
-          _property = value;
+          _priority = value;
           break;
         }
       case 2:
         {
-          _property = value;
+          _priority = value;
           break;
         }
     }
@@ -59,7 +62,7 @@ class Note {
     map['title'] = _title;
     map['description'] = _description;
     map['date'] = date;
-    map['property'] = _property;
+    map['property'] = _priority;
     return map;
   }
 
@@ -70,7 +73,7 @@ class Note {
     _title = map['title'];
     _description = map['description'];
     date = map['date'];
-    _property = map['property'];
+    _priority = map['property'];
   }
   // ***********************************************************
 }
